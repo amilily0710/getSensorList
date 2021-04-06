@@ -24,25 +24,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mtextSensors = findViewById(R.id.textSensors);
-      //  mtextSensors.setMovementMethod(new ScrollingMovementMethod());
-
+        //  mtextSensors.setMovementMethod(new ScrollingMovementMethod());
 
         button = findViewById(R.id.retrieve_sensors_btn);
+        button.setOnClickListener(this::onClick);
 
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
-                sensorList = sensorMgr.getSensorList(Sensor.TYPE_ALL);
+    }
 
-                mtextSensors.append("(# Sensors : " + sensorList.size() + ")\n\n");
-                for(Sensor sensor : sensorList) {
-                    mtextSensors.append("Sensors name: " + sensor.getName() + "\n");
-                    mtextSensors.append("Sensors name: " + sensor.getType() + "\n\n");
-                }}
-                                  });
+        public void onClick(View v){
+            sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
+            sensorList = sensorMgr.getSensorList(Sensor.TYPE_ALL);
 
-
+            mtextSensors.append("(# Sensors : " + sensorList.size() + ")\n\n");
+            for(Sensor sensor : sensorList) {
+                mtextSensors.append("Sensors name: " + sensor.getName() + "\n");
+                mtextSensors.append("Sensors name: " + sensor.getType() + "\n\n");
+            }}
 
 
         }
-    }
+
